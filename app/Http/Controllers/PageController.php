@@ -11,34 +11,34 @@ class PageController extends Controller
         return view('pages.index');
     }
 
-    public function about()
+    public function aboutus()
     {
-        return view('pages.about');
+        return view('pages.aboutus');
     }
 
-    public function contact()
+    public function contactus()
     {
-        return view('pages.contact');
+        return view('pages.contactus');
     }
 
-    public function blog()
+    // public function blogs()
+    // {
+    //     return view('pages.blogs');
+    // }
+
+    public function projects()
     {
-        return view('pages.blog');
+        return view('pages.projects');
     }
 
-    public function project()
+    public function services()
     {
-        return view('pages.project');
+        return view('pages.services');
     }
 
-    public function service()
+    public function clients()
     {
-        return view('pages.service');
-    }
-
-    public function client()
-    {
-        return view('pages.client');
+        return view('pages.clients');
     }
 
     public function team()

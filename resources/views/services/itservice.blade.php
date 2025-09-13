@@ -22,7 +22,7 @@
                 <h1 class="mb-4">Open Clusters Systems IT Services</h1>
                 <p>Whether you need custom web and mobile development or a dedicated team of your own, Open Clusters Systems is ready to help. Whether you need custom web and mobile development or a dedicated team of your own, Hi-tech Solution Network is ready to help.</p>
                 <p class="mb-4">Whether you need custom web and mobile development or a dedicated team of your own, Hi-tech Solution Network is ready to help.</p>
-                <a href="{{ route('service') }}" class="btn btn-secondary rounded-pill px-5 py-3 text-white">Other Services</a>
+                <a href="{{ route('services') }}" class="btn btn-secondary rounded-pill px-5 py-3 text-white">Other Services</a>
             </div>
         </div>
     </div>

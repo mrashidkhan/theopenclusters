@@ -23,7 +23,7 @@
                 <p>Custom software development is the process of designing, building, integrating, scaling, and upgrading software solutions to address the pressing needs or achieve objectives of your specific business.
                 We at Open Clusters Systems provide you the solutions best suited to your requirements.</p>
                 <p class="mb-4">Open Clusters Systems is a leading provider of cutting-edge software development services, delivering tailored solutions that drive innovation and efficiency for businesses across various industries. With a team of experienced developers and technology experts, we specialize in creating scalable, secure, and high-performance software applications that meet the unique needs of our clients. Whether it's custom software development, application modernization, or seamless integration with existing systems, Open Clusters Systems is committed to turning your vision into reality, empowering your business with technology that accelerates growth and success.</p>
-                <a href="{{ route('service') }}" class="btn btn-secondary rounded-pill px-5 py-3 text-white">Other Services</a>
+                <a href="{{ route('services') }}" class="btn btn-secondary rounded-pill px-5 py-3 text-white">Other Services</a>
             </div>
         </div>
     </div>

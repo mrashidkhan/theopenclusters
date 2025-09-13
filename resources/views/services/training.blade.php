@@ -23,7 +23,7 @@
                 <h1 class="mb-4">Open Clusters Systems Providing Training Services</h1>
                 <p>Open Clusters Systems offers instructor-led courses featuring leading partner technologies. We provide flexible education options delivered virtually or on site. We also limit class sizes to maximize instructor/student interaction.</p>
                 <p class="mb-4">Open Clusters Systems offers instructor-led courses featuring leading partner technologies. We provide flexible education options delivered virtually or on site. We also limit class sizes to maximize instructor/student interaction.</p>
-                <a href="{{ route('service') }}" class="btn btn-secondary rounded-pill px-5 py-3 text-white">Other Services</a>
+                <a href="{{ route('services') }}" class="btn btn-secondary rounded-pill px-5 py-3 text-white">Other Services</a>
             </div>
         </div>
     </div>

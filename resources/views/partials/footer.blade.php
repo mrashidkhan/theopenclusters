@@ -17,9 +17,9 @@
             <div class="col-lg-3 col-md-6">
                 <a href="#" class="h3 text-secondary">Short Link</a>
                 <div class="mt-4 d-flex flex-column short-link">
-                    <a href="{{ route('about') }}" class="mb-2 text-white"><i class="fas fa-angle-right text-secondary me-2"></i>About us</a>
-                    <a href="{{ route('contact') }}" class="mb-2 text-white"><i class="fas fa-angle-right text-secondary me-2"></i>Contact us</a>
-                    <a href="{{ route('service') }}" class="mb-2 text-white"><i class="fas fa-angle-right text-secondary me-2"></i>Our Services</a>
+                    <a href="{{ route('aboutus') }}" class="mb-2 text-white"><i class="fas fa-angle-right text-secondary me-2"></i>About us</a>
+                    <a href="{{ route('contactus') }}" class="mb-2 text-white"><i class="fas fa-angle-right text-secondary me-2"></i>Contact us</a>
+                    <a href="{{ route('services') }}" class="mb-2 text-white"><i class="fas fa-angle-right text-secondary me-2"></i>Our Services</a>
                     {{-- <a href="{{ route('project') }}" class="mb-2 text-white"><i class="fas fa-angle-right text-secondary me-2"></i>Our Projects</a> --}}
                     <a href="{{ route('team') }}" class="mb-2 text-white"><i class="fas fa-angle-right text-secondary me-2"></i>Our Team</a>
                     <a href="{{ route('index') }}" class="mb-2 text-white"><i class="fas fa-angle-right text-secondary me-2"></i>Home</a>

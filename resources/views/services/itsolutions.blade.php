@@ -23,7 +23,7 @@
                 <h1 class="mb-4">Open Clusters Systems IT Solutions</h1>
                 <p>At Open Clusters Systems, we’ve learned that there is no substitute for a well designed and well-supported technology environment. Whether you are updating hardware in support of a new enterprise application or trying to optimize your daily operational support.</p>
                 <p class="mb-4">Open Clusters Systems understands your needs and we have taken our experiences and expertise to develop a suite of services that will help you get the most out of your information technology (IT).</p>
-                <a href="{{ route('service') }}" class="btn btn-secondary rounded-pill px-5 py-3 text-white">Other Services</a>
+                <a href="{{ route('services') }}" class="btn btn-secondary rounded-pill px-5 py-3 text-white">Other Services</a>
             </div>
         </div>
     </div>

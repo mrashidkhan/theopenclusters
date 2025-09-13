@@ -23,7 +23,7 @@
                 <h1 class="mb-4">Open Clusters Systems Automation Services</h1>
                 <p>Finding and hiring 10X talent takes valuable time and resources. When you work with Open Clusters Systems, you get a dedicated team of expert web and mobile app developers who are ready to get to work for you.</p>
                 <p class="mb-4">It saves you the time and effort of having to go through a recruitment process. You get to bring in immediate development talents and skills to your existing team without any long-term commitments or potential HR issues. Less risk, more immediate productivity.</p>
-                <a href="{{ route('service') }}" class="btn btn-secondary rounded-pill px-5 py-3 text-white">Other Services</a>
+                <a href="{{ route('services') }}" class="btn btn-secondary rounded-pill px-5 py-3 text-white">Other Services</a>
             </div>
         </div>
     </div>

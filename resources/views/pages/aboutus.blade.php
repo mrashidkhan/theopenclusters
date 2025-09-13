@@ -8,6 +8,6 @@
 
 
     @include('partials.aboutsection')
-    
+    @include('partials.teamsection')
 
 @endsection

@@ -116,18 +116,18 @@
                     <div class="navbar-nav ms-auto mx-xl-auto p-0">
                         <a href="{{ route('index') }}"
                             class="nav-item nav-link {{ Request::is('/') ? 'active text-secondary' : '' }}">Home</a>
-                        <a href="{{ route('about') }}"
-                            class="nav-item nav-link {{ Request::is('about') ? 'active text-secondary' : '' }}">About</a>
-                        <a href="{{ route('service') }}"
-                            class="nav-item nav-link {{ Request::is('service*') ? 'active text-secondary' : '' }}">Services</a>
-                        <a href="{{ route('client') }}"
-                            class="nav-item nav-link {{ Request::is('client') ? 'active text-secondary' : '' }}">Our                             Clients</a>
+                        <a href="{{ route('aboutus') }}"
+                            class="nav-item nav-link {{ Request::is('aboutus') ? 'active text-secondary' : '' }}">Aboutus</a>
+                        <a href="{{ route('services') }}"
+                            class="nav-item nav-link {{ Request::is('services*') ? 'active text-secondary' : '' }}">Services</a>
+                        <a href="{{ route('clients') }}"
+                            class="nav-item nav-link {{ Request::is('clients') ? 'active text-secondary' : '' }}"> Clients</a>
 
-                        <a href="{{ route('team') }}"
-                            class="nav-item nav-link {{ Request::is('team') ? 'active text-secondary' : '' }}">Our
-                            Team</a>
-                        <a href="{{ route('contact') }}"
-                            class="nav-item nav-link {{ Request::is('contact') ? 'active text-secondary' : '' }}">Contact</a>
+                        <a href="{{ route('blogs') }}"
+                            class="nav-item nav-link {{ Request::is('blogs') ? 'active text-secondary' : '' }}">
+                            Blogs</a>
+                        <a href="{{ route('contactus') }}"
+                            class="nav-item nav-link {{ Request::is('contactus') ? 'active text-secondary' : '' }}">Contactus</a>
                     </div>
                 </div>
                 <div class="d-none d-xl-flex flex-shirink-0">

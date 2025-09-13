@@ -13,8 +13,8 @@
                         <h6 class="text-secondary h4 animated fadeInUp">Best IT Solutions</h6>
                         <h1 class="text-white display-1 mb-4 animated fadeInRight">An Innovative IT Solutions Agency</h1>
                         <p class="mb-4 text-white fs-5 animated fadeInDown">A leading IT solutions agency specializing in innovative, tailored solutions to drive your business growth. </p>
-                        <a href="{{ route('service') }}" class="me-2"><button type="button" class="px-4 py-sm-3 px-sm-5 btn btn-primary rounded-pill carousel-content-btn1 animated fadeInLeft">Read More</button></a>
-                        <a href="{{ route('contact') }}" class="ms-2"><button type="button" class="px-4 py-sm-3 px-sm-5 btn btn-primary rounded-pill carousel-content-btn2 animated fadeInRight">Contact Us</button></a>
+                        <a href="{{ route('services') }}" class="me-2"><button type="button" class="px-4 py-sm-3 px-sm-5 btn btn-primary rounded-pill carousel-content-btn1 animated fadeInLeft">Read More</button></a>
+                        <a href="{{ route('contactus') }}" class="ms-2"><button type="button" class="px-4 py-sm-3 px-sm-5 btn btn-primary rounded-pill carousel-content-btn2 animated fadeInRight">Contact Us</button></a>
                     </div>
                 </div>
             </div>
@@ -25,8 +25,8 @@
                         <h6 class="text-secondary h4 animated fadeInUp">Best IT Solutions</h6>
                         <h1 class="text-white display-1 mb-4 animated fadeInLeft">Quality Digital Services You Really Need!</h1>
                         <p class="mb-4 text-white fs-5 animated fadeInDown">Delivering high-quality digital services that meet your unique business needs.</p>
-                        <a href="{{ route('service') }}" class="me-2"><button type="button" class="px-4 py-sm-3 px-sm-5 btn btn-primary rounded-pill carousel-content-btn1 animated fadeInLeft">Read More</button></a>
-                        <a href="{{ route('contact') }}" class="ms-2"><button type="button" class="px-4 py-sm-3 px-sm-5 btn btn-primary rounded-pill carousel-content-btn2 animated fadeInRight">Contact Us</button></a>
+                        <a href="{{ route('services') }}" class="me-2"><button type="button" class="px-4 py-sm-3 px-sm-5 btn btn-primary rounded-pill carousel-content-btn1 animated fadeInLeft">Read More</button></a>
+                        <a href="{{ route('contactus') }}" class="ms-2"><button type="button" class="px-4 py-sm-3 px-sm-5 btn btn-primary rounded-pill carousel-content-btn2 animated fadeInRight">Contact Us</button></a>
                     </div>
                 </div>
             </div>
