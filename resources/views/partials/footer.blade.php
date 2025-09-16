@@ -20,8 +20,8 @@
                     <a href="{{ route('aboutus') }}" class="mb-2 text-white"><i class="fas fa-angle-right text-secondary me-2"></i>About us</a>
                     <a href="{{ route('contactus') }}" class="mb-2 text-white"><i class="fas fa-angle-right text-secondary me-2"></i>Contact us</a>
                     <a href="{{ route('services') }}" class="mb-2 text-white"><i class="fas fa-angle-right text-secondary me-2"></i>Our Services</a>
-                    {{-- <a href="{{ route('project') }}" class="mb-2 text-white"><i class="fas fa-angle-right text-secondary me-2"></i>Our Projects</a> --}}
-                    <a href="{{ route('team') }}" class="mb-2 text-white"><i class="fas fa-angle-right text-secondary me-2"></i>Our Team</a>
+                    <a href="{{ route('blogs') }}" class="mb-2 text-white"><i class="fas fa-angle-right text-secondary me-2"></i>Blogs</a>
+                    {{-- <a href="{{ route('team') }}" class="mb-2 text-white"><i class="fas fa-angle-right text-secondary me-2"></i>Our Team</a> --}}
                     <a href="{{ route('index') }}" class="mb-2 text-white"><i class="fas fa-angle-right text-secondary me-2"></i>Home</a>
                 </div>
             </div>
@@ -38,8 +38,8 @@
             <div class="col-lg-3 col-md-6">
                 <a href="#" class="h3 text-secondary">Contact Us</a>
                 <div class="text-white mt-4 d-flex flex-column contact-link">
-                    <a href="#" class="pb-3 text-light border-bottom border-primary"><i class="fas fa-map-marker-alt text-secondary me-2"></i> R800 Sector 8C Gulshan e Zahoor, Karachi, Pakistan</a>
-                    <a href="tel:+923333284252" class="py-3 text-light border-bottom border-primary"><i class="fas fa-phone-alt text-secondary me-2"></i> +92 333 328 4252</a>
+                    <a href="#" class="pb-3 text-light border-bottom border-primary"><i class="fas fa-map-marker-alt text-secondary me-2"></i> 688 Costz Azul Imperial county CA</a>
+                    <a href="tel:+923333284252" class="py-3 text-light border-bottom border-primary"><i class="fas fa-phone-alt text-secondary me-2"></i> +1 (760) 412-0990</a>
                     <a href="#" class="py-3 text-light border-bottom border-primary"><i class="fas fa-envelope text-secondary me-2"></i> contact@theopenclusters.com</a>
                 </div>
             </div>

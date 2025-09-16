@@ -80,7 +80,7 @@
             <div class="d-flex justify-content-between topbar">
                 <div class="top-info">
                     <small class="me-3 text-white-50"><a href="#"><i
-                                class="fas fa-map-marker-alt me-2 text-secondary"></i></a>Dallas</small>
+                                class="fas fa-map-marker-alt me-2 text-secondary"></i></a>California</small>
                     <small class="me-3 text-white-50"><a href="#"><i
                                 class="fas fa-envelope me-2 text-secondary"></i></a>contact@theopenclusters.com</small>
                 </div>
@@ -141,7 +141,7 @@
                     </div>
                     <div class="d-flex flex-column pe-4 border-end">
                         <span class="text-white-50">Have any questions?</span>
-                        <span class="text-secondary">Call: +923333284252</span>
+                        <span class="text-secondary">Call: +1 (760) 412-0990</span>
                     </div>
                     <div class="d-flex align-items-center justify-content-center ms-4 ">
                         <a href="#"><i class="bi bi-search text-white fa-2x"></i> </a>

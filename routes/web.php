@@ -37,9 +37,15 @@ Route::get('/clients', [PageController::class, 'clients'])->name('clients');
 Route::get('/team', [PageController::class, 'team'])->name('team');
 Route::get('/testimonials', [PageController::class, 'testimonials'])->name('testimonials');
 
+
 /* Blog Routes */
 Route::get('/blogs', [BlogController::class, 'index'])->name('blogs');
 Route::get('/blog/{slug}', [BlogController::class, 'show'])->name('blog.show');
+Route::get('/blogs/category/{categorySlug}', [BlogController::class, 'category'])->name('blogs.category');
+Route::get('/blogs/tag/{tagSlug}', [BlogController::class, 'tag'])->name('blogs.tag');
+Route::get('/blogs/archive/{year}/{month?}', [BlogController::class, 'archive'])->name('blogs.archive');
+// New route for comment submission
+Route::post('blog/comments/store', [BlogController::class, 'storeComment'])->name('blog.comments.store');
 
 
 /* Services Routes */
@@ -64,6 +70,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::resource('posts', AdminPostController::class);
     Route::patch('posts/{post}/toggle-status', [AdminPostController::class, 'toggleStatus'])->name('posts.toggle-status');
     Route::patch('posts/{post}/toggle-featured', [AdminPostController::class, 'toggleFeatured'])->name('posts.toggle-featured');
+
+    Route::post('posts/bulk-action', [AdminPostController::class, 'bulkAction'])->name('posts.bulk-action');
 
     // Categories Management
     Route::resource('categories', AdminCategoryController::class);
@@ -93,3 +101,6 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('staff/{staff}/profile', [AdminStaffController::class, 'profile'])->name('staff.profile');
 
 });
+
+// Add this near the top with other routes, before the admin routes
+Route::get('/sitemap.xml', [PageController::class, 'sitemap'])->name('sitemap');

@@ -3,115 +3,260 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+use App\Models\Post;
+use App\Models\PostCategory;
+use App\Models\PostTag;
+use App\Models\PostComment;
 
 class BlogController extends Controller
 {
-    // Sample blog data - you can later move this to a database
-    private function getBlogData()
+    public function index(Request $request)
     {
-        return [
-            [
-                'id' => 1,
-                'slug' => 'modern-web-design-trends-2024',
-                'title' => 'Modern Web Design Trends for 2024',
-                'category' => 'Web Design',
-                'author' => 'Daniel Martin',
-                'date' => '24 March 2023',
-                'image' => 'blog-1.jpg',
-                'excerpt' => 'Discover the latest web design trends that are shaping the digital landscape in 2024. From minimalist layouts to interactive elements.',
-                'content' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
-                'shares' => 5324,
-                'comments' => 5
-            ],
-            [
-                'id' => 2,
-                'slug' => 'php-laravel-development-best-practices',
-                'title' => 'PHP Laravel Development Best Practices',
-                'category' => 'Development',
-                'author' => 'Sarah Johnson',
-                'date' => '23 April 2023',
-                'image' => 'blog-2.jpg',
-                'excerpt' => 'Learn essential Laravel development practices that will make your code more maintainable, secure, and efficient.',
-                'content' => 'Laravel has become one of the most popular PHP frameworks for web development. In this comprehensive guide, we will explore the best practices that every Laravel developer should follow to build robust and scalable applications.',
-                'shares' => 4521,
-                'comments' => 8
-            ],
-            [
-                'id' => 3,
-                'slug' => 'mobile-app-development-guide',
-                'title' => 'Complete Guide to Mobile App Development',
-                'category' => 'Mobile App',
-                'author' => 'Michael Chen',
-                'date' => '30 Jan 2023',
-                'image' => 'blog-3.jpg',
-                'excerpt' => 'Everything you need to know about mobile app development, from planning to deployment across different platforms.',
-                'content' => 'Mobile app development has evolved significantly over the years. Whether you are planning to build a native app or a cross-platform solution, this guide will walk you through the entire process step by step.',
-                'shares' => 6789,
-                'comments' => 12
-            ],
-            [
-                'id' => 4,
-                'slug' => 'cloud-computing-solutions-2024',
-                'title' => 'Cloud Computing Solutions for Modern Businesses',
-                'category' => 'Cloud Technology',
-                'author' => 'Emily Davis',
-                'date' => '15 May 2023',
-                'image' => 'blog-1.jpg',
-                'excerpt' => 'Explore how cloud computing is transforming business operations and discover the best cloud solutions for your organization.',
-                'content' => 'Cloud computing has revolutionized the way businesses operate, offering scalability, flexibility, and cost-effectiveness. In this article, we delve into various cloud solutions and their benefits for modern enterprises.',
-                'shares' => 3456,
-                'comments' => 7
-            ],
-            [
-                'id' => 5,
-                'slug' => 'cybersecurity-best-practices',
-                'title' => 'Essential Cybersecurity Best Practices',
-                'category' => 'Security',
-                'author' => 'Robert Wilson',
-                'date' => '10 June 2023',
-                'image' => 'blog-2.jpg',
-                'excerpt' => 'Protect your business from cyber threats with these essential cybersecurity practices and security measures.',
-                'content' => 'With the increasing number of cyber threats, implementing robust cybersecurity measures has become crucial for businesses of all sizes. This article covers essential practices to safeguard your digital assets.',
-                'shares' => 2987,
-                'comments' => 4
-            ],
-            [
-                'id' => 6,
-                'slug' => 'artificial-intelligence-business-applications',
-                'title' => 'AI Applications in Modern Business',
-                'category' => 'Artificial Intelligence',
-                'author' => 'Lisa Thompson',
-                'date' => '22 July 2023',
-                'image' => 'blog-3.jpg',
-                'excerpt' => 'Discover how artificial intelligence is being applied across various business sectors to improve efficiency and innovation.',
-                'content' => 'Artificial Intelligence is no longer a futuristic concept but a present reality transforming industries. From customer service chatbots to predictive analytics, AI is reshaping how businesses operate and serve their customers.',
-                'shares' => 8765,
-                'comments' => 15
-            ]
-        ];
-    }
+        $query = Post::with(['staff', 'category', 'approvedComments'])
+            ->where('status', 'published')
+            ->orderBy('published_at', 'desc');
 
-    public function index()
-    {
-        $blogs = $this->getBlogData();
-        return view('pages.blogs', compact('blogs'));
+        // Filter by category if provided
+        if ($request->has('category') && $request->category) {
+            $query->whereHas('category', function($q) use ($request) {
+                $q->where('slug', $request->category)
+                  ->where('status', 'active');
+            });
+        }
+
+        // Search functionality
+        if ($request->has('search') && $request->search) {
+            $searchTerm = $request->search;
+            $query->where(function($q) use ($searchTerm) {
+                $q->where('title', 'like', '%' . $searchTerm . '%')
+                  ->orWhere('excerpt', 'like', '%' . $searchTerm . '%')
+                  ->orWhere('content', 'like', '%' . $searchTerm . '%');
+            });
+        }
+
+        // Check if this is an AJAX request for loading more posts
+        if ($request->ajax() && $request->has('load_more')) {
+            // Get all posts for AJAX request
+            $allBlogs = $query->get();
+
+            return response()->json([
+                'success' => true,
+                'blogs' => $allBlogs->map(function($blog) {
+                    return [
+                        'title' => $blog->title,
+                        'slug' => $blog->slug,
+                        'excerpt' => Str::limit($blog->excerpt, 120),
+                        'featured_image_url' => $blog->featured_image_url,
+                        'category_name' => $blog->category->name,
+                        'staff_name' => $blog->staff->name,
+                        'staff_avatar_url' => $blog->staff->avatar_url,
+                        'published_date' => $blog->published_date,
+                        'views_count' => $blog->views_count ?? 0,
+                        'comments_count' => $blog->approvedComments->count(),
+                        'reading_time' => $blog->reading_time ?? 5,
+                        'is_featured' => $blog->is_featured,
+                        'blog_show_url' => route('blog.show', $blog->slug)
+                    ];
+                })
+            ]);
+        }
+
+        // For normal page load, get total count first
+        $totalPosts = $query->count();
+
+        // Then get only first 3 posts
+        $blogs = $query->take(3)->get();
+
+        // Get all active categories for filter dropdown
+        $categories = PostCategory::where('status', 'active')
+            ->withCount(['posts' => function($query) {
+                $query->where('status', 'published');
+            }])
+            ->orderBy('name')
+            ->get();
+
+        // Get featured posts
+        $featuredPosts = Post::with(['staff', 'category'])
+            ->where('status', 'published')
+            ->where('is_featured', true)
+            ->orderBy('published_at', 'desc')
+            ->take(3)
+            ->get();
+
+        return view('pages.blogs', compact('blogs', 'categories', 'featuredPosts', 'totalPosts'));
     }
 
     public function show($slug)
     {
-        $blogs = $this->getBlogData();
-        $blog = collect($blogs)->firstWhere('slug', $slug);
+        // Find the blog post by slug
+        $blog = Post::with(['staff', 'category', 'tags', 'comments' => function($query) {
+                $query->where('status', 'approved')
+                      ->orderBy('created_at', 'desc');
+            }])
+            ->where('slug', $slug)
+            ->where('status', 'published')
+            ->firstOrFail();
 
-        if (!$blog) {
-            abort(404);
+        // Increment view count
+        $blog->increment('views_count');
+
+        // Get related blogs from the same category
+        $relatedBlogs = Post::with(['staff', 'category'])
+            ->where('status', 'published')
+            ->where('post_category_id', $blog->post_category_id)
+            ->where('id', '!=', $blog->id)
+            ->orderBy('published_at', 'desc')
+            ->take(3)
+            ->get();
+
+        // If no related blogs in same category, get recent posts
+        if ($relatedBlogs->count() < 3) {
+            $additionalBlogs = Post::with(['staff', 'category'])
+                ->where('status', 'published')
+                ->where('id', '!=', $blog->id)
+                ->whereNotIn('id', $relatedBlogs->pluck('id'))
+                ->orderBy('published_at', 'desc')
+                ->take(3 - $relatedBlogs->count())
+                ->get();
+
+            $relatedBlogs = $relatedBlogs->merge($additionalBlogs);
         }
 
-        // Get related blogs (excluding current blog)
-        $relatedBlogs = collect($blogs)
-            ->where('slug', '!=', $slug)
-            ->take(3)
-            ->toArray();
+        // Get next and previous posts
+        $nextPost = Post::where('status', 'published')
+            ->where('published_at', '>', $blog->published_at)
+            ->orderBy('published_at', 'asc')
+            ->first();
 
-        return view('pages.blog-single', compact('blog', 'relatedBlogs'));
+        $previousPost = Post::where('status', 'published')
+            ->where('published_at', '<', $blog->published_at)
+            ->orderBy('published_at', 'desc')
+            ->first();
+
+        return view('pages.blog-single', compact(
+            'blog',
+            'relatedBlogs',
+            'nextPost',
+            'previousPost'
+        ));
     }
+
+    public function category($categorySlug)
+    {
+        // Find the category
+        $category = PostCategory::where('slug', $categorySlug)
+            ->where('status', 'active')
+            ->firstOrFail();
+
+        // Get posts in this category
+        $blogs = Post::with(['staff', 'category', 'comments'])
+            ->where('status', 'published')
+            ->where('post_category_id', $category->id)
+            ->orderBy('published_at', 'desc')
+            ->paginate(9);
+
+        // Get all active categories for filter dropdown
+        $categories = PostCategory::where('status', 'active')
+            ->withCount(['posts' => function($query) {
+                $query->where('status', 'published');
+            }])
+            ->orderBy('name')
+            ->get();
+
+        return view('pages.blogs', compact('blogs', 'categories', 'category'));
+    }
+
+    public function tag($tagSlug)
+    {
+        // Find the tag
+        $tag = PostTag::where('slug', $tagSlug)
+            ->where('status', 'active')
+            ->firstOrFail();
+
+        // Get posts with this tag
+        $blogs = Post::with(['staff', 'category', 'comments'])
+            ->where('status', 'published')
+            ->whereHas('tags', function($query) use ($tag) {
+                $query->where('post_tag_id', $tag->id);
+            })
+            ->orderBy('published_at', 'desc')
+            ->paginate(9);
+
+        // Get all active categories for filter dropdown
+        $categories = PostCategory::where('status', 'active')
+            ->withCount(['posts' => function($query) {
+                $query->where('status', 'published');
+            }])
+            ->orderBy('name')
+            ->get();
+
+        return view('pages.blogs', compact('blogs', 'categories', 'tag'));
+    }
+
+    public function archive($year, $month = null)
+    {
+        $query = Post::with(['staff', 'category', 'comments'])
+            ->where('status', 'published')
+            ->whereYear('published_at', $year);
+
+        if ($month) {
+            $query->whereMonth('published_at', $month);
+        }
+
+        $blogs = $query->orderBy('published_at', 'desc')->paginate(9);
+
+        // Get all active categories for filter dropdown
+        $categories = PostCategory::where('status', 'active')
+            ->withCount(['posts' => function($query) {
+                $query->where('status', 'published');
+            }])
+            ->orderBy('name')
+            ->get();
+
+        $archiveDate = [
+            'year' => $year,
+            'month' => $month,
+            'month_name' => $month ? date('F', mktime(0, 0, 0, $month, 1)) : null
+        ];
+
+        return view('pages.blogs', compact('blogs', 'categories', 'archiveDate'));
+    }
+
+    public function storeComment(Request $request)
+{
+    // Validate the comment data
+    $validated = $request->validate([
+        'name' => 'required|string|max:255',
+        'email' => 'required|email|max:255',
+        'website' => 'nullable|url|max:255',
+        'content' => 'required|string|max:1000',
+        'post_id' => 'required|exists:posts,id',
+    ]);
+
+    // Find the blog post
+    $post = Post::where('id', $validated['post_id'])
+                ->where('status', 'published')
+                ->firstOrFail();
+
+    // Check if comments are allowed for this post
+    if (!$post->allow_comments) {
+        return redirect()->back()->withErrors(['error' => 'Comments are not allowed for this post.']);
+    }
+
+    // Store the comment using PostComment model
+    \App\Models\PostComment::create([
+        'post_id' => $post->id,
+        'name' => $validated['name'],
+        'email' => $validated['email'],
+        'website' => $validated['website'],
+        'content' => $validated['content'],
+        'status' => 'pending', // Comments need admin approval
+        'ip_address' => $request->ip(),
+        'user_agent' => $request->userAgent(),
+    ]);
+
+    // Redirect back with success message
+    return redirect()->back()->with('success', 'Comments have been submitted and appear on the post after admin approval');
+}
 }
