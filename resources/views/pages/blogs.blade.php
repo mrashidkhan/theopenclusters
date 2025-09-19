@@ -1,9 +1,5 @@
 @extends('layouts.master')
 
-@section('title', 'Blogs')
-
-@section('page-title', 'Blogs')
-
 @section('content')
 
 <!-- Page Header Start -->
@@ -335,3 +331,4 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 
 @endsection
+

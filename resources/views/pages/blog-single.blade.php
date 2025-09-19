@@ -1,9 +1,5 @@
 @extends('layouts.master')
 
-@section('title', $blog->title)
-
-@section('page-title', $blog->title)
-
 @section('content')
 
 <!-- Page Header Start -->

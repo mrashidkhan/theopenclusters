@@ -5,12 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@yield('title', 'Admin Dashboard') | {{ config('app.name') }}</title>
 
+    <!-- Favicon and touch Icons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('img/favicon_io/apple-touch-icon.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('img/favicon_io/favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('img/favicon_io/favicon-16x16.png') }}">
+    <link rel="manifest" href="{{ asset('img/favicon_io/site.webmanifest') }}">
+    
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <!-- Quill.js CSS -->
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+
     <!-- Custom Admin CSS -->
     <style>
+        /* Sidebar heading visibility fix */
+        .sidebar .sidebar-heading {
+            color: #16C60C !important;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
         .sidebar {
             position: fixed;
             top: 0;
@@ -110,6 +127,36 @@
             background: linear-gradient(45deg, #ffd700, #ffed4e);
             color: #333;
             font-weight: bold;
+        }
+
+        /* Custom Quill.js Styles */
+        .quill-editor-container {
+            border: 1px solid #ced4da;
+            border-radius: 0.375rem;
+            background: white;
+        }
+
+        .quill-editor-container .ql-toolbar {
+            border: none;
+            border-bottom: 1px solid #ced4da;
+            border-radius: 0.375rem 0.375rem 0 0;
+        }
+
+        .quill-editor-container .ql-container {
+            border: none;
+            border-radius: 0 0 0.375rem 0.375rem;
+            font-size: 14px;
+        }
+
+        .quill-editor-container .ql-editor {
+            min-height: 300px;
+            max-height: 500px;
+            overflow-y: auto;
+        }
+
+        .quill-editor-container .ql-editor.ql-blank::before {
+            color: #6c757d;
+            font-style: italic;
         }
     </style>
     @stack('styles')
@@ -284,6 +331,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Chart.js for dashboard -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Quill.js JS -->
+    <script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
 
     <script>
         // Auto-hide alerts after 5 seconds
@@ -296,7 +345,66 @@
                     }
                 });
             }, 5000);
+
+            // Initialize Quill editors
+            initializeQuillEditors();
         });
+
+        // Initialize Quill.js editors
+        function initializeQuillEditors() {
+            const quillContainers = document.querySelectorAll('.quill-editor');
+
+            quillContainers.forEach(function(container) {
+                const editorId = container.getAttribute('data-editor-id');
+                const textarea = document.getElementById(editorId);
+
+                if (textarea && !container.querySelector('.ql-toolbar')) {
+                    const quill = new Quill(container, {
+                        theme: 'snow',
+                        placeholder: 'Write your content here...',
+                        modules: {
+                            toolbar: [
+                                [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+                                [{ 'font': [] }],
+                                [{ 'size': ['small', false, 'large', 'huge'] }],
+                                ['bold', 'italic', 'underline', 'strike'],
+                                [{ 'color': [] }, { 'background': [] }],
+                                [{ 'script': 'sub'}, { 'script': 'super' }],
+                                [{ 'align': [] }],
+                                [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+                                [{ 'indent': '-1'}, { 'indent': '+1' }],
+                                ['blockquote', 'code-block'],
+                                ['link', 'image', 'video'],
+                                ['clean']
+                            ]
+                        }
+                    });
+
+                    // Set initial content from textarea
+                    if (textarea.value) {
+                        quill.root.innerHTML = textarea.value;
+                    }
+
+                    // Sync content with hidden textarea on change
+                    quill.on('text-change', function() {
+                        textarea.value = quill.root.innerHTML;
+                    });
+
+                    // Also sync on form submission
+                    const form = textarea.closest('form');
+                    if (form) {
+                        form.addEventListener('submit', function() {
+                            textarea.value = quill.root.innerHTML;
+                        });
+                    }
+                }
+            });
+        }
+
+        // Function to reinitialize Quill editors (useful for dynamic content)
+        function reinitializeQuillEditors() {
+            initializeQuillEditors();
+        }
 
         // Confirm delete actions
         function confirmDelete(message = 'Are you sure you want to delete this item?') {

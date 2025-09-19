@@ -145,9 +145,15 @@ class Post extends Model
     }
 
     public function getExcerptAttribute($value)
-    {
-        return $value ?: Str::limit(strip_tags($this->content), 150);
+{
+    if ($value) {
+        // If excerpt exists, strip any HTML that might be there and return clean text
+        return strip_tags(html_entity_decode($value));
     }
+
+    // If no excerpt, generate from content (existing behavior)
+    return Str::limit(strip_tags($this->content), 150);
+}
 
     public function getReadingTimeTextAttribute()
     {
@@ -222,4 +228,11 @@ class Post extends Model
     {
         return 'slug';
     }
+
+    // Mutator to strip HTML from excerpt
+public function setExcerptAttribute($value)
+{
+    // Strip HTML tags and decode entities, then limit to 300 characters
+    $this->attributes['excerpt'] = Str::limit(strip_tags(html_entity_decode($value)), 300);
+}
 }
