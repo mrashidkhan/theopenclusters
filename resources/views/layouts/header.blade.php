@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+
     <!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -14,29 +15,27 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+    <meta name="description" content="Open Clusters Systems: Empowering businesses with cutting-edge IT solutions tailored to your specific needs.">
+    <meta name="author" content="">
 
-    <!-- Dynamic Meta Tags -->
-    <meta name="description" content="{{ isset($metaTags) ? $metaTags['description'] : 'Open Clusters Systems: Empowering businesses with cutting-edge IT solutions tailored to your specific needs.' }}">
-    <meta name="keywords" content="{{ isset($metaTags) ? $metaTags['keywords'] : 'Application designing, IT Solutions, IT, Automation, Software, Digital Marketing' }}">
-    <meta name="author" content="{{ isset($metaTags) ? $metaTags['author'] : 'Open Clusters Systems' }}">
+    <!-- Social Media Meta Tags (Replace content with your actual information) -->
+    <meta name="keywords"
+          content="Application designing, IT Solutions, IT, Automation, Software, Digital Margeting" />
+    <meta property="og:title" content="Open Clusters Systems" />
+    <meta property="og:type" content="website" />
+    <meta property="og:description"
+          content="Open Clusters Systems: Empowering businesses with cutting-edge IT solutions tailored to your specific needs." />
 
-    <!-- Open Graph Meta Tags -->
-    <meta property="og:title" content="{{ isset($metaTags) ? $metaTags['title'] : 'Open Clusters Systems' }}" />
-    <meta property="og:type" content="{{ isset($metaTags) ? $metaTags['type'] : 'website' }}" />
-    <meta property="og:description" content="{{ isset($metaTags) ? $metaTags['description'] : 'Open Clusters Systems: Empowering businesses with cutting-edge IT solutions tailored to your specific needs.' }}" />
-    <meta property="og:image" content="{{ isset($metaTags) ? $metaTags['image'] : asset('img/logo.png') }}" />
-    <meta property="og:url" content="{{ isset($metaTags) ? $metaTags['url'] : request()->url() }}" />
-    <meta property="og:site_name" content="{{ isset($metaTags) ? $metaTags['site_name'] : 'Open Clusters Systems' }}" />
-
+    <meta property="og:image"
+          content="{{ asset('/img/logo.png') }}" />
+    <meta property="og:url" content="https://theopenclusters.com" />
     <!-- Twitter Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="{{ isset($metaTags) ? $metaTags['title'] : 'Open Clusters Systems' }}">
-    <meta name="twitter:description" content="{{ isset($metaTags) ? $metaTags['description'] : 'Open Clusters Systems: Empowering businesses with cutting-edge IT solutions tailored to your specific needs.' }}">
-    <meta name="twitter:image" content="{{ isset($metaTags) ? $metaTags['image'] : asset('img/favicon.png') }}">
-
-    @if(isset($metaTags['canonical']))
-    <link rel="canonical" href="{{ $metaTags['canonical'] }}">
-    @endif
+    <meta name="twitter:title" content="Open Clusters Systems">
+    <meta name="twitter:description"
+          content="Open Clusters Systems: Empowering businesses with cutting-edge IT solutions tailored to your specific needs.">
+    <meta name="twitter:image"
+          content="{{ asset('img/favicon.png') }}">
 
     <!-- Favicon and touch Icons -->
     <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('img/favicon_io/apple-touch-icon.png') }}">
@@ -44,17 +43,24 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('img/favicon_io/favicon-16x16.png') }}">
     <link rel="manifest" href="{{ asset('img/favicon_io/site.webmanifest') }}">
 
-    <!-- Page Title -->
-    <title>{{ isset($metaTags) ? $metaTags['title'] : 'Open Clusters Systems' }}</title>
+    {{-- <link href="{{ asset('img/favicon/favicon-16x16.png') }}" rel="shortcut icon" type="image/png">
+    <link href="{{ asset('img/favicon/apple-touch-icon.png') }}" rel="apple-touch-icon">
+    <link href="{{ asset('img/favicon/apple-touch-icon-72x72.png') }}" rel="apple-touch-icon" sizes="72x72">
+    <link href="{{ asset('img/favicon/apple-touch-icon-114x114.png') }}" rel="apple-touch-icon" sizes="114x114">
+    <link href="{{ asset('img/favicon/apple-touch-icon-144x144.png') }}" rel="apple-touch-icon" sizes="144x144"> --}}
 
-    <!-- Google Web Fonts -->
+    <!-- Page Title -->
+    <title>Open Clusters Systems</title>
+
+    <!-- Google Web Fonts - DNS Prefetch for faster loading -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Saira:wght@500;600;700&display=swap" rel="stylesheet">
+    <!-- Updated Google Fonts with optimized parameters for minified delivery -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Saira:wght@500;600;700&display=swap&subset=latin" rel="stylesheet">
 
-    <!-- Icon Font Stylesheet -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Icon Font Stylesheet - Updated to minified versions -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
 
     <!-- Libraries Stylesheet -->
     <link href="{{ asset('lib/animate/animate.min.css') }}" rel="stylesheet">
@@ -65,15 +71,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
     <!-- Template Stylesheet -->
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
-
-    <!-- Structured Data for SEO -->
-    @if(isset($metaTags['schema']))
-    <script type="application/ld+json">
-    {!! json_encode($metaTags['schema']) !!}
-    </script>
-    @endif
-
-
 </head>
 
 <body>

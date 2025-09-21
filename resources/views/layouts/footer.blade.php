@@ -4,7 +4,7 @@
         <div class="row g-5">
             <div class="col-lg-3 col-md-6">
                 <a href="{{ route('index') }}">
-                    <h1 class="text-white fw-bold d-block">Open<span class="text-secondary">Clusters</span> </h1>
+                    <h2 class="text-white fw-bold d-block h1">Open<span class="text-secondary">Clusters</span> </h2>
                 </a>
                 <p class="mt-4 text-light">A leading provider of innovative IT solutions, dedicated to helping businesses achieve their goals through cutting-edge technology and exceptional service.</p>
                 <div class="d-flex hightech-link">
@@ -63,12 +63,10 @@
 </div>
 <!-- Footer End -->
 
-
 <!-- Back to Top -->
 <a href="#" class="btn btn-secondary btn-square rounded-circle back-to-top"><i class="fa fa-arrow-up text-white"></i></a>
 
-
-<!-- JavaScript Libraries -->
+<!-- JavaScript Libraries - Load only once -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
 <script src="{{ asset('lib/wow/wow.min.js') }}"></script>
@@ -76,16 +74,15 @@
 <script src="{{ asset('lib/waypoints/waypoints.min.js') }}"></script>
 <script src="{{ asset('lib/owlcarousel/owl.carousel.min.js') }}"></script>
 
-<!-- Template Javascript -->
+<!-- Main Template Javascript -->
 <script src="{{ asset('js/main.js') }}"></script>
+
+<!-- Contact message scroll functionality -->
 <script>
-    window.addEventListener('load', function() {
-        var element = document.getElementById('contactmessage');
-        if (element) {
-            element.scrollIntoView({ behavior: 'smooth' });
-        }
-    });
+window.addEventListener('load', function() {
+    var element = document.getElementById('contactmessage');
+    if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+    }
+});
 </script>
-
-
-

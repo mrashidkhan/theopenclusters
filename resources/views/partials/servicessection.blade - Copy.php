@@ -6,7 +6,7 @@
             @if(Request::is('services'))
                 <h1>Services Built Specifically For Your Business</h1>
             @else
-                <h2 class="h1">Services Built Specifically For Your Business</h2>
+                <h2 class="h1">Services Built Specifically For Your Business</h1>
             @endif
         </div>
         <div class="row g-5 services-inner">
@@ -16,7 +16,7 @@
                         <div class="services-content-icon">
                             <i class="fa fa-code fa-7x mb-4 text-primary"></i>
                             <h4 class="mb-3">Automation</h4>
-                            <p class="mb-4">Open Clusters Systems offers seamless automation services to streamline your business operations and boost productivity. We follow <a href="https://www.nist.gov/cyberframework" target="_blank" rel="noopener">NIST cybersecurity frameworks</a> for secure automation implementations.</p>
+                            <p class="mb-4">Open Clusters Systems offers seamless automation services to streamline your business operations and boost productivity.</p>
                             <a href="{{ route('services.automation') }}" class="btn btn-secondary text-white px-5 py-3 rounded-pill">Read More</a>
                         </div>
                     </div>
@@ -28,7 +28,7 @@
                         <div class="services-content-icon">
                             <i class="fa fa-file-code fa-7x mb-4 text-primary"></i>
                             <h4 class="mb-3">IT Services</h4>
-                            <p class="mb-4">Open Clusters Systems delivers reliable IT services to enhance your business infrastructure and ensure seamless technology performance. Our services align with <a href="https://www.axelos.com/best-practice-solutions/itil" target="_blank" rel="noopener">ITIL best practices</a> for service management.</p>
+                            <p class="mb-4">Open Clusters Systems delivers reliable IT services to enhance your business infrastructure and ensure seamless technology performance.</p>
                             <a href="{{ route('services.itservice') }}" class="btn btn-secondary text-white px-5 py-3 rounded-pill">Read More</a>
                         </div>
                     </div>
@@ -40,7 +40,7 @@
                         <div class="services-content-icon">
                             <i class="fa fa-external-link-alt fa-7x mb-4 text-primary"></i>
                             <h4 class="mb-3">IT Solutions</h4>
-                            <p class="mb-4">Open Clusters Systems provides innovative IT solutions designed to optimize and future-proof your business technology. We leverage <a href="https://cloud.google.com/solutions" target="_blank" rel="noopener">Google Cloud solutions</a> and <a href="https://aws.amazon.com/solutions/" target="_blank" rel="noopener">AWS best practices</a> for scalable implementations.</p>
+                            <p class="mb-4">Open Clusters Systems provides innovative IT solutions designed to optimize and future-proof your business technology.</p>
                             <a href="{{ route('services.itsolutions') }}" class="btn btn-secondary text-white px-5 py-3 rounded-pill">Read More</a>
                         </div>
                     </div>
@@ -52,9 +52,10 @@
                         <div class="services-content-icon">
                             <i class="fas fa-user-secret fa-7x mb-4 text-primary"></i>
                             <h4 class="mb-3">Software Development</h4>
-                            <p class="mb-4">Open Clusters Systems offers custom software development to drive innovation and meet your unique business needs. We follow <a href="https://www.agilealliance.org/agile101/" target="_blank" rel="noopener">Agile development methodologies</a> and <a href="https://www.oracle.com/database/" target="_blank" rel="noopener">Oracle database solutions</a> for robust applications.</p>
+                            <p class="mb-4">Open Clusters Systems offers custom software development to drive innovation and meet your unique business needs.</p>
                             <a href="{{ route('services.softwaredevelopment') }}" class="btn btn-secondary text-white px-5 py-3 rounded-pill">Read More</a>
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -64,7 +65,7 @@
                         <div class="services-content-icon">
                             <i class="fa fa-envelope-open fa-7x mb-4 text-primary"></i>
                             <h4 class="mb-3">IT & Telecom Staffing</h4>
-                            <p class="mb-4">Open Clusters Systems provides expert IT & Telecom staffing solutions to ensure your projects are supported by top industry talent. Our recruitment follows <a href="https://www.shrm.org/resourcesandtools/hr-topics/talent-acquisition" target="_blank" rel="noopener">SHRM talent acquisition standards</a> for quality assurance.</p>
+                            <p class="mb-4">Open Clusters Systems provides expert IT & Telecom staffing solutions to ensure your projects are supported by top industry talent.</p>
                             <a href="{{ route('services.staffing') }}" class="btn btn-secondary text-white px-5 py-3 rounded-pill">Read More</a>
                         </div>
                     </div>
@@ -76,28 +77,9 @@
                         <div class="services-content-icon">
                             <i class="fas fa-laptop fa-7x mb-4 text-primary"></i>
                             <h4 class="mb-3">Training Services</h4>
-                            <p class="mb-4">Open Clusters Systems provides industry-leading training services to upskill your team. Our programs are aligned with <a href="https://www.comptia.org/certifications" target="_blank" rel="noopener">CompTIA certification standards</a> and <a href="https://www.cybersecurity.gov/" target="_blank" rel="noopener">federal cybersecurity guidelines</a> for comprehensive skill development.</p>
+                            <p class="mb-4">Open Clusters Systems provides industry-leading training services to upskill your team.</p>
                             <a href="{{ route('services.training') }}" class="btn btn-secondary text-white px-5 py-3 rounded-pill">Read More</a>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Additional Resources Section -->
-        <div class="row mt-5">
-            <div class="col-12 text-center">
-                <div class="bg-light p-4 rounded">
-                    <h5 class="text-primary mb-3">Industry Resources & Standards</h5>
-                    <p class="mb-3">Our services are built on industry best practices and standards from leading organizations:</p>
-                    <div class="d-flex flex-wrap justify-content-center gap-3">
-                        <a href="https://www.iso.org/iso-27001-information-security.html" target="_blank" rel="noopener" class="text-decoration-none">ISO 27001 Security Standards</a>
-                        <span class="text-muted">|</span>
-                        <a href="https://www.microsoft.com/security" target="_blank" rel="noopener" class="text-decoration-none">Microsoft Security Guidelines</a>
-                        <span class="text-muted">|</span>
-                        <a href="https://www.ieee.org/standards/" target="_blank" rel="noopener" class="text-decoration-none">IEEE Technology Standards</a>
-                        <span class="text-muted">|</span>
-                        <a href="https://www.pmi.org/about/learn-about-pmi/what-is-project-management" target="_blank" rel="noopener" class="text-decoration-none">PMI Project Management</a>
                     </div>
                 </div>
             </div>

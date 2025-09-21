@@ -3,7 +3,7 @@
     <div class="container">
         <div class="text-center mx-auto pb-5 wow fadeIn" data-wow-delay=".3s" style="max-width: 600px;">
             <h5 class="text-primary">Our Team</h5>
-            <h1>Meet our expert Team</h1>
+            <h2 style="h1">Meet our expert Team</h2>
         </div>
 
         @php

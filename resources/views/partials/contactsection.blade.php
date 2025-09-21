@@ -3,7 +3,11 @@
     <div class="container">
         <div class="text-center mx-auto pb-5 wow fadeIn" data-wow-delay=".3s" style="max-width: 600px;">
             <h5 class="text-primary">Get In Touch</h5>
-            <h1 class="mb-3">Contact for any query</h1>
+            @if(Request::is('contactus'))
+                <h1 class="mb-3">Contact for any query</h1>
+            @else
+                <h2 class="h1 mb-3">Contact for any query</h1>
+            @endif
             <p class="mb-2">Have a question, comment, or need assistance? Feel free to reach out to our team at Open Clusters Systems. We're committed to providing prompt and helpful responses to all inquiries.
                 Simply fill out the form below, and we'll get back to you as soon as possible.</p>
         </div>

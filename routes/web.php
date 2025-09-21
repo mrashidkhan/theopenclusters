@@ -176,3 +176,6 @@ Route::get('/sitemap.xml', [PageController::class, 'sitemap'])->name('sitemap');
 Route::get('/login', function () {
     return redirect()->route('admin.login');
 })->name('login');
+
+// Add this at the end of your web.php file, after all other routes
+Route::fallback([PageController::class, 'notFound'])->name('404');

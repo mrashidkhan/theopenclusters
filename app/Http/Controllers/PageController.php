@@ -16,7 +16,7 @@ class PageController extends Controller
     {
         $this->setMetaTags([
             'title' => 'Open Clusters Systems - IT Solutions & Software Development',
-            'description' => 'Leading IT solutions provider offering software development, automation, digital marketing, and business consulting services. Transform your business with cutting-edge technology.',
+            'description' => 'Expert IT solutions: software development, automation, digital marketing & business consulting. Transform your business with innovative technology.',
             'keywords' => 'IT Solutions, Software Development, Automation, Digital Marketing, Business Consulting, Technology Services',
             'image' => asset('img/logo.png'),
             'schema' => [
@@ -302,4 +302,26 @@ class PageController extends Controller
         return response()->view('sitemap', compact('urls'))
             ->header('Content-Type', 'application/xml');
     }
+
+    /**
+ * Handle 404 Not Found errors
+ */
+public function notFound()
+{
+    $this->setMetaTags([
+        'title' => '404 - Page Not Found | Open Clusters Systems',
+        'description' => 'The page you are looking for could not be found. Explore our IT services, solutions, and resources at Open Clusters Systems.',
+        'keywords' => 'Page Not Found, 404 Error, Open Clusters Systems, IT Services',
+        'canonical' => request()->url(),
+        'schema' => [
+            '@context' => 'https://schema.org',
+            '@type' => 'WebPage',
+            'name' => '404 - Page Not Found',
+            'description' => 'The requested page could not be found',
+            'url' => request()->url()
+        ]
+    ]);
+
+    return response()->view('pages.404', [], 404);
+}
 }
